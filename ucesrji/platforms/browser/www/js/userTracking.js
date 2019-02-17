@@ -16,14 +16,11 @@ document.getElementById('showLocation').innerHTML =
 var userMarker;
 
 function showPosition(position) {
-
 if (userMarker){mymap.removeLayer(userMarker);}
-
 
 userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
 
 document.getElementById('showLocation').innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-
 }
 
 
