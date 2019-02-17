@@ -10,5 +10,3 @@ trackAndCircle ();
 }, false);
 }
 
-
-
