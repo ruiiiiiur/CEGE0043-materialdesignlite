@@ -26,7 +26,7 @@ getDistance();
 function getDistance() {
 alert('getting distance');
 // getDistanceFromPoint is the function called once the distance has been found
-navigator.geolocation.getCurrentPosition(getDistanceFromPoint);
+navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoints);
 }
 
 function getDistanceFromPoint(position) {
@@ -39,7 +39,7 @@ var lng = -0.13818;
 // return the distance in kilometers
 var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat,lng, 'K');
 
-if (distance < 1000) {alert("You are within 100m of UCL");}
+if (distance < 0.1) {alert("You are within 100m of UCL");}
 //document.getElementById('showDistance').innerHTML = "Distance: " + distance;
 }
 
@@ -65,3 +65,19 @@ return dist;
 
 
 
+function getDistanceFromMultiplePoints(position){
+var minDistance = 100000000000;
+var closestQuake = "";
+for(var i = 0; i < earthquakes.features.length; i++) {
+var obj = earthquakes.features[i];
+var distance = calculateDistance(position.coords.latitude,
+position.coords.longitude,obj.geometry.coordinates[0], obj.geometry.coordinates[1], 'K');
+if (distance < minDistance){
+minDistance = distance;
+closestQuake = obj.properties.place;
+}
+}
+alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
+
+	
+}
