@@ -39,7 +39,7 @@ var lng = -0.13818;
 // return the distance in kilometers
 var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat,lng, 'K');
 
-if (distance < 1000) {alert("You are within 100m of UCL");}
+if (distance < 0.1) {alert("You are within 100m of UCL");}
 //document.getElementById('showDistance').innerHTML = "Distance: " + distance;
 }
 
